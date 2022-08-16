@@ -1,8 +1,12 @@
 {% extends 'main/header.html' %}
 {% block content %}
 <div class="container mt-5 p-5 border rounded border-dark bg-white">
+    {% for message in messages %}
+        <div class="alert alert-info" role="alert">
+            {{message}}
+        </div>
+    {% endfor %}
     <div class="row">
-
         {% for product in item %}
             <div class="col-md-4 mb-4">
                 <div class="card p-3">
@@ -17,4 +21,12 @@
 
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        // messages timeout for 10 sec 
+        setTimeout(function() {
+            $('.alert').fadeOut('slow');
+        }, 2000); // <-- time in milliseconds, 1000 =  1 sec
+    });
+</script>
 {% endblock %}

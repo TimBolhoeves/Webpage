@@ -1,18 +1,6 @@
 from django.db import models
 from django.urls import reverse
 
-class Users(models.Model):
-    name = models.CharField(max_length=255, default='Niet ingevuld', unique=True)
-    password = models.CharField(max_length=255, default='Niet ingevuld')
-    rank = models.CharField(max_length=1, default='3')
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return reverse("users_detail", kwargs={"pk": self.pk})
-        
-
 class Item(models.Model):
     name = models.CharField(max_length=255, default='Niet ingevuld')
     description = models.CharField(max_length=255, default='Niet ingevuld')
