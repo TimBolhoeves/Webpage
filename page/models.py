@@ -2,10 +2,9 @@ from django.db import models
 from django.urls import reverse
 
 class Users(models.Model):
-    name = models.CharField(max_length=255, default='Niet ingevuld')
+    name = models.CharField(max_length=255, default='Niet ingevuld', unique=True)
     password = models.CharField(max_length=255, default='Niet ingevuld')
     rank = models.CharField(max_length=1, default='3')
-    image = models.ImageField(upload_to='./page/static/images')
 
     def __str__(self):
         return self.name
@@ -16,10 +15,11 @@ class Users(models.Model):
 
 class Item(models.Model):
     name = models.CharField(max_length=255, default='Niet ingevuld')
+    description = models.CharField(max_length=255, default='Niet ingevuld')
     price = models.CharField(max_length=255, default='Niet ingevuld')
     type = models.CharField(max_length=255, default='Niet ingevuld')
     stock = models.CharField(max_length=255, default='0')
-    image = models.ImageField(upload_to='./page/static/images')
+    image = models.ImageField(upload_to='./static/images')
 
     def __str__(self):
         return self.name
