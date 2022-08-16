@@ -17,6 +17,7 @@ class Users(models.Model):
 class Item(models.Model):
     name = models.CharField(max_length=255, default='Niet ingevuld')
     price = models.CharField(max_length=255, default='Niet ingevuld')
+    type = models.CharField(max_length=255, default='Niet ingevuld')
     stock = models.CharField(max_length=255, default='0')
     image = models.ImageField(upload_to='./page/static/images')
 
