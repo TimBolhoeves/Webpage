@@ -11,4 +11,4 @@ To setup and run this application follow these steps in-order.
 * `py manage.py createsuperuser` and follow the steps
 * `py manage.py runserver`
 <br>
-  ...And done!
+...And done!
