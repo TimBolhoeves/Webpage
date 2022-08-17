@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, auth
 from .forms import ItemForm
 from django.contrib.auth.decorators import login_required, permission_required
+import os
 
 today = datetime.now()
 today_format = today.strftime('%Y-%m-%d')
@@ -40,8 +41,16 @@ def add(request):
     stock = request.POST['stock']
     image = request.FILES['image']
     obj = Item(name=name, description=description, price=price, type=type, stock=stock, image=image)
-    print(obj)
     obj.save()
+    return HttpResponseRedirect(reverse('index'))
+
+@login_required
+@permission_required('page.delete_item', raise_exception=True)
+def deleteitem(request, id):
+    item = Item.objects.get(id=id)
+    # This function auto deletes the related image saved in media/images by using django-cleanup (https://pypi.org/project/django-cleanup/)
+    item.delete()
+    messages.info(request, 'Succesfully deleted the item')
     return HttpResponseRedirect(reverse('index'))
 
 def login(request):

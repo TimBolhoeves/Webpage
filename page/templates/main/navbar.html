@@ -19,7 +19,7 @@
           </div>
         </li>
         {% if user.is_authenticated %}
-          {% if perms.page.can_add_item %}
+          {% if perms.page.add_item %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'additem' %}"><i class="fa fa-plus" aria-hidden="true"></i> Add item</a>
             </li>

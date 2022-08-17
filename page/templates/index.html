@@ -14,12 +14,24 @@
             <div class="col-md-4 mb-4">
                 <div class="card p-3">
                     <div class="d-flex flex-row mb-3"><img src="/media/{{ product.image }}" width="100" height="50">
-                        <div class="d-flex flex-column ml-2"><span>{{ product.name }}</span><span class="text-black-50">{{ product.type }}</span></div>
+                        <div class="d-flex flex-column ml-2">
+                            <span>{{ product.name }}</span>
+                            <span class="text-black-50">{{ product.type }}</span>
+                        </div>
                     </div>
                     <span class="text-black">Price: € {{ product.price }}</span>
                     <br>
                     <h6>{{ product.description }}</h6>
-                    <div class="d-flex justify-content-between install mt-3"><span class="text-black-50">In stock: {{ product.stock }}</span><span class="text-primary">View&nbsp;<i class="fa fa-angle-right"></i></span></div>
+                    <div class="d-flex justify-content-between install mt-3">
+                        <span class="text-black-50">In stock: {{ product.stock }}</span>
+                        <span class="text-primary">View&nbsp;<i class="fa fa-angle-right"></i></span>
+                    </div>
+                {% if user.is_authenticated %}
+                    {% if perms.page.can_delete_item %}
+                        <hr>
+                        <a type="button" class="btn btn-danger" href="deleteitem/{{ product.id }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    {% endif %}
+                {% endif %}
                 </div>
             </div>
         {% endfor %}
