@@ -38,8 +38,9 @@ def add(request):
     price = request.POST['price']
     type = request.POST['type']
     stock = request.POST['stock']
-    image = request.POST['image']
+    image = request.FILES['image']
     obj = Item(name=name, description=description, price=price, type=type, stock=stock, image=image)
+    print(obj)
     obj.save()
     return HttpResponseRedirect(reverse('index'))
 

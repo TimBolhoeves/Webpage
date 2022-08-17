@@ -93,6 +93,10 @@ STATICFILES_DIRS = [
         os.path.join(BASE_DIR, "./page/static"), 
     ]
 
+MEDIA_URL = '/media/'  
+  
+# Path where media is stored  
+MEDIA_ROOT = os.path.join(BASE_DIR, './page/media/')  
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators

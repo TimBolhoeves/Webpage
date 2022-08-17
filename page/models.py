@@ -7,7 +7,7 @@ class Item(models.Model):
     price = models.CharField(max_length=255, default='Niet ingevuld')
     type = models.CharField(max_length=255, default='Niet ingevuld')
     stock = models.CharField(max_length=255, default='0')
-    image = models.ImageField(upload_to='./static/images')
+    image = models.ImageField(upload_to='images')
 
     def __str__(self):
         return self.name
