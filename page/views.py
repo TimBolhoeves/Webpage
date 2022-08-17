@@ -8,14 +8,40 @@ from datetime import date, datetime
 from django.views.csrf import *
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, auth
+from .forms import ItemForm
+from django.contrib.auth.decorators import login_required, permission_required
+
+today = datetime.now()
+today_format = today.strftime('%Y-%m-%d')
 
 def index(request):
     item = Item.objects.all().values()
     template = loader.get_template('index.html')
     context = {
         'item': item,
+        'today': today,
     }
     return HttpResponse(template.render(context, request))
+
+@login_required
+@permission_required('page.add_item', raise_exception=True)
+def additem(request):
+    context = {}
+    context['form'] = ItemForm()
+    return render( request, "additem.html", context)
+
+@login_required
+@permission_required('page.add_item', raise_exception=True)
+def add(request):
+    name = request.POST['name']
+    description = request.POST['description']
+    price = request.POST['price']
+    type = request.POST['type']
+    stock = request.POST['stock']
+    image = request.POST['image']
+    obj = Item(name=name, description=description, price=price, type=type, stock=stock, image=image)
+    obj.save()
+    return HttpResponseRedirect(reverse('index'))
 
 def login(request):
     return render(request, 'login.html', {})

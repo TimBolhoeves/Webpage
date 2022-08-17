@@ -14,17 +14,17 @@
             <i class="fa fa-list-alt" aria-hidden="true"></i> Items
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#">Paintings</a>
+            <a class="dropdown-item" href="#">Logos</a>
           </div>
         </li>
-        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search">
-        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-      </form>
+        {% if user.is_authenticated %}
+          {% if perms.page.can_add_item %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'additem' %}"><i class="fa fa-plus" aria-hidden="true"></i> Add item</a>
+            </li>
+          {% endif %}
+        {% endif %}
     </ul>
     {% if user.is_authenticated %}
       <div class="my-2 my-lg-0">

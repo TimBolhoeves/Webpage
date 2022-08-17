@@ -28,6 +28,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# @login_required in views.py redirects to the url that is stated here
+LOGIN_URL = 'login'
+
 
 # Application definition
 
@@ -39,7 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'page.apps.PageConfig',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -84,7 +90,7 @@ DATABASES = {
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, "./static"), 
+        os.path.join(BASE_DIR, "./page/static"), 
     ]
 
 

@@ -1,11 +1,14 @@
 {% extends 'main/header.html' %}
+<!-- TODO: Het maken van een grafiek via bijv chartjs op bijv hoeveelheid items per type-->
 {% block content %}
 <div class="container mt-5 p-5 border rounded border-dark bg-white">
+
     {% for message in messages %}
         <div class="alert alert-info" role="alert">
             {{message}}
         </div>
     {% endfor %}
+
     <div class="row">
         {% for product in item %}
             <div class="col-md-4 mb-4">
@@ -13,7 +16,7 @@
                     <div class="d-flex flex-row mb-3"><img src="{{ product.image }}" width="100" height="50">
                         <div class="d-flex flex-column ml-2"><span>{{ product.name }}</span><span class="text-black-50">{{ product.type }}</span></div>
                     </div>
-                    <span class="text-black">Price: €{{ product.price }}</span>
+                    <span class="text-black">Price: € {{ product.price }}</span>
                     <br>
                     <h6>{{ product.description }}</h6>
                     <div class="d-flex justify-content-between install mt-3"><span class="text-black-50">In stock: {{ product.stock }}</span><span class="text-primary">View&nbsp;<i class="fa fa-angle-right"></i></span></div>
