@@ -4,7 +4,7 @@
 <div class="container mt-5 p-5 border rounded border-dark bg-white">
 
     {% for message in messages %}
-        <div class="alert alert-info" role="alert">
+        <div class="alert alert-primary" role="alert">
             {{message}}
         </div>
     {% endfor %}
@@ -13,7 +13,17 @@
         {% for product in item %}
             <div class="col-md-4 mb-4">
                 <div class="card p-3">
-                    <div class="d-flex flex-row mb-3"><img src="/media/{{ product.image }}" width="100" height="50">
+                    <div class="d-flex flex-row mb-3">
+                        {% if user.is_authenticated %}
+                            {% if perms.page.change_item %} 
+                                <a href="updateimage/{{ product.id }}">
+                                    <img class="imghover" src="/media/{{ product.image }}" width="100" height="50">
+                                </a>
+                            {% endif %}
+                        {% else %}
+                        <img src="/media/{{ product.image }}" width="100" height="50">
+                        {% endif %}
+
                         <div class="d-flex flex-column ml-2">
                             <span>{{ product.name }}</span>
                             <span class="text-black-50">{{ product.type }}</span>
@@ -24,13 +34,20 @@
                     <h6>{{ product.description }}</h6>
                     <div class="d-flex justify-content-between install mt-3">
                         <span class="text-black-50">In stock: {{ product.stock }}</span>
-                        <span class="text-primary">View&nbsp;<i class="fa fa-angle-right"></i></span>
+                        <span class="text-primary">View <i class="fa fa-angle-right"></i></span>
                     </div>
                 {% if user.is_authenticated %}
-                    {% if perms.page.can_delete_item %}
+
+                    {% if perms.page.change_item %} 
+                        <hr>
+                        <a type="button" class="btn btn-info" href="updateitem/{{ product.id }}"><i class="fa fa-magic" aria-hidden="true"></i></a>
+                    {% endif %}
+
+                    {% if perms.page.delete_item %}
                         <hr>
                         <a type="button" class="btn btn-danger" href="deleteitem/{{ product.id }}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     {% endif %}
+
                 {% endif %}
                 </div>
             </div>
@@ -38,12 +55,4 @@
 
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        // messages timeout for 10 sec 
-        setTimeout(function() {
-            $('.alert').fadeOut('slow');
-        }, 2000); // <-- time in milliseconds, 1000 =  1 sec
-    });
-</script>
 {% endblock %}

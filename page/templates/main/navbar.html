@@ -14,7 +14,11 @@
             <i class="fa fa-list-alt" aria-hidden="true"></i> Items
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">All Items</a>
+            {% for x in item %}
+              {% ifchanged %}
+                <a class="dropdown-item" href="#">{{ x.type }}</a>
+              {% endifchanged %}
+            {% endfor %}
           </div>
         </li>
         {% if user.is_authenticated %}

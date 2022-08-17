@@ -12,3 +12,9 @@ To setup and run this application follow these steps in-order.
 * `py manage.py runserver`
 <br>
 ...And done!
+
+# Optional
+If you wish to not see detailed error messages when something goes wrong, do the following:
+* Go into `settings.py` located in the `project` folder, and set `DEBUG=False`
+* In the same file, add `['*']` to `ALLOWED_HOSTS`
+(note: in production you want to set ALLOWED_HOSTS to something like `['.herokuapp.com', 'localhost', '127.0.0.1']`)

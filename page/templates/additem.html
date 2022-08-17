@@ -4,7 +4,13 @@
 {% load crispy_forms_tags %}
 
 <div class="container mt-5 p-5 border rounded border-dark bg-white">
-    <h2>Add item <i class="fa fa-plus" aria-hidden="true"></i></h2>
+    {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
+    {% endfor %}
+
+    <h2><i class="fa fa-plus" aria-hidden="true"></i> Add item</h2>
 
     <form action='add/' enctype="multipart/form-data" method="post">
         {% csrf_token %}
