@@ -27,6 +27,11 @@
               <a class="nav-link" href="{% url 'additem' %}"><i class="fa fa-plus" aria-hidden="true"></i> Add item</a>
             </li>
           {% endif %}
+          {% if perms.page.view_item %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'itemstats' %}"><i class="fa fa-bar-chart" aria-hidden="true"></i> View stats</a>
+            </li>
+          {% endif %}
         {% endif %}
     </ul>
     {% if user.is_authenticated %}

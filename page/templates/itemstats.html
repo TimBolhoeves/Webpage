@@ -1,0 +1,71 @@
+{% extends 'main/header.html' %}
+{% include 'main/navbar.html' %}
+{% block content %}
+<div class="container mt-5 p-5 border rounded border-dark bg-white">
+    <h2> <i class="fa fa-bar-chart" aria-hidden="true"></i> Item statistics</h2>
+
+    <div id="container" style="width: 100%;">
+        <canvas id="chart" data-url="{% url 'chart' %}"></canvas>
+    </div>
+
+
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script>
+
+$(function () {
+
+    var $chart = $("#chart");
+    $.ajax({
+    url: $chart.data("url"),
+    success: function (data) {
+
+        var biggerThan10=[];
+        var smallerThan10=[];
+
+        $.each(data.data, function( index,value ) {
+            if(value>10){
+                biggerThan10[index]=value;
+            }else{
+                smallerThan10[index]=value;
+            }
+          });
+
+        var ctx = $chart[0].getContext("2d");
+
+        new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.labels,
+            datasets: [{
+                label: 'Stock',
+                backgroundColor: 'green',
+                data: biggerThan10
+            }, {
+                label: 'Stock',
+                backgroundColor: 'red',
+                data: smallerThan10
+            }
+            
+            ]          
+        },
+        options: {
+            responsive: true,
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: 'Item Bar Chart'
+            }
+        }
+        });
+
+    }
+    });
+
+});
+
+</script>
+{% endblock %}

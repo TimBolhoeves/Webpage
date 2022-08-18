@@ -1,5 +1,4 @@
 {% extends 'main/header.html' %}
-{% include 'main/navbar.html' %}
 {% block content %}
 <div class="container mt-5 p-5 border rounded border-dark bg-white">
     <h2> <i class="fa fa-user" aria-hidden="true"></i> Login</h2>
@@ -9,9 +8,9 @@
 
         <div class="form-group">
             {% for message in messages %}
-            <div class="alert alert-danger" role="alert">
-                {{message}}
-            </div>
+                <div class="alert alert-danger" role="alert">
+                    {{message}}
+                </div>
             {% endfor %}
         </div>
 

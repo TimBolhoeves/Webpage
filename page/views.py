@@ -11,6 +11,8 @@ from django.contrib.auth.models import User, auth
 from .forms import ItemForm
 from django.contrib.auth.decorators import login_required, permission_required
 import os
+from django.db.models import Sum
+from django.http import JsonResponse
 
 today = datetime.now()
 today_format = today.strftime('%Y-%m-%d')
@@ -143,4 +145,35 @@ def logout(request):
     return redirect('index')
 
 # <--- user authentication
+#------------------------------------------------------------
+
+#------------------------------------------------------------
+# chart --->
+
+@login_required
+@permission_required('page.view_item', raise_exception=True)
+def itemstats(request):
+    item = Item.objects.all().values()
+    template = loader.get_template('itemstats.html')
+    context = {
+        'item': item,
+        'today': today,
+    }
+    return HttpResponse(template.render(context, request))
+
+def chart(request):
+    labels = []
+    data = []
+
+    queryset = Item.objects.values('name').annotate(inventory=Sum('stock'))
+    for entry in queryset:
+        labels.append(entry['name'])
+        data.append(entry['inventory'])
+    
+    return JsonResponse(data={
+        'labels': labels,
+        'data': data,
+    })
+
+# <--- chart
 #------------------------------------------------------------

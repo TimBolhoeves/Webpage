@@ -24,4 +24,7 @@ urlpatterns = [
     path('updateimage/updateimg/<int:id>', views.updateimg, name='updateimg'),
     #----
 
+    path('itemstats/', views.itemstats, name='itemstats'),
+    path('itemstats/chart/', views.chart, name='chart'),
+
 ]
