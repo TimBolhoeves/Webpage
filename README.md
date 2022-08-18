@@ -9,7 +9,6 @@ To setup and run this application follow these steps in-order.
 * `py manage.py makemigrations`
 * `py manage.py migrate`
 * `py manage.py createsuperuser` and follow the steps 
-<br />
 (note: you may want to look at [Optional](#-optional) before starting the local server) 
 * `py manage.py runserver`
 <br />
