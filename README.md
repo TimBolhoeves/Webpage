@@ -13,6 +13,9 @@ To setup and run this application follow these steps in-order.
 <br>
 ...And done!
 
+### NOTE
+Its important to generate (or choose) your own `SECRET_KEY` located in `settings.py`, and not use the one already given.
+
 # Optional
 If you wish to not see detailed error messages when something goes wrong, do the following:
 * Go into `settings.py` located in the `project` folder, and set `DEBUG=False`
