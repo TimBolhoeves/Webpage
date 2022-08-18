@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 import os
 
@@ -30,6 +31,14 @@ ALLOWED_HOSTS = []
 
 # @login_required in views.py redirects to the url that is stated here
 LOGIN_URL = 'login'
+
+# logout after 10 minutes of downtime
+AUTO_LOGOUT = {
+    'IDLE_TIME': timedelta(minutes=10),
+    'SESSION_TIME': timedelta(hours=1),
+    'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
+    'MESSAGE': 'The session has expired. Please login again to continue.',
+    } 
 
 
 # Application definition
@@ -55,6 +64,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django_auto_logout.middleware.auto_logout',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -71,6 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_auto_logout.context_processors.auto_logout_client',
             ],
         },
     },
