@@ -48,6 +48,13 @@
             <p>
               <a href="https://github.com/TimBolhoeve-DBG/bestelapp" target="_blank" class="text-reset">Bestel app</a>
             </p>
+            {% if user.is_authenticated %}
+              {% if perms.auth.add_user %}
+                <p>
+                  <a href="{% url 'mail' %}" class="btn btn-primary"><i class="fa fa-envelope" aria-hidden="true"></i> Send mail</a>
+                </p>
+              {% endif %}
+            {% endif %}
           </div>
           <!-- Grid column -->
   

@@ -13,6 +13,8 @@ from django.contrib.auth.decorators import login_required, permission_required
 import os
 from django.db.models import Sum
 from django.http import JsonResponse
+from django.core.mail import send_mail
+import requests
 
 today = datetime.now()
 today_format = today.strftime('%Y-%m-%d')
@@ -176,4 +178,40 @@ def chart(request):
     })
 
 # <--- chart
+#------------------------------------------------------------    
+
+#------------------------------------------------------------
+# mail --->
+
+def mail(request):
+    item = Item.objects.all().values()
+    template = loader.get_template('mail.html')
+    context = {
+        'item': item,
+        'today': today,
+    }
+    return HttpResponse(template.render(context, request))
+
+def sendmail(request):
+    subject = request.POST['subject']
+    body = request.POST['body']
+
+    try:
+        requests.post(
+            # change to your own mailgun info
+            "https://api.mailgun.net/v3/your_domain_name/messages",
+            auth=("api", "your_api_key"),
+            data={"from": "noreply@deboer-group.com",
+                "to": ["recipient@whoknows.com"], # recipient list, can be multiple people, the recipient(s) needs to verify the first time
+                "subject": subject,
+                "text": body})
+        messages.info(request, 'Succesfully sent mail')
+
+    except:
+        messages.info(request, 'Something went wrong')
+
+    finally:
+        return redirect('index')
+
+# <--- mail
 #------------------------------------------------------------

@@ -29,17 +29,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
 # @login_required in views.py redirects to the url that is stated here
 LOGIN_URL = 'login'
 
-# logout after 10 minutes of downtime
+# logout after 10 minutes of downtime (uses LOGIN_URL to redirect)
 AUTO_LOGOUT = {
     'IDLE_TIME': timedelta(minutes=10),
     'SESSION_TIME': timedelta(hours=1),
     'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
     'MESSAGE': 'The session has expired. Please login again to continue.',
     } 
-
 
 # Application definition
 

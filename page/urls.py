@@ -2,16 +2,16 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # home page
+    # Home page
     path('', views.index, name='index'),
 
-    # auth
+    # Auth
     path('login/', views.login, name='login'),
     path('login/post/', views.loginpost, name='loginpost'),
     path('logout/', views.logout, name='logout'),
     #----
 
-    #CRUD
+    # CRUD
     path('additem/', views.additem, name='additem'),
     path('additem/add/', views.add, name='add'),
 
@@ -24,7 +24,14 @@ urlpatterns = [
     path('updateimage/updateimg/<int:id>', views.updateimg, name='updateimg'),
     #----
 
+    # Stats
     path('itemstats/', views.itemstats, name='itemstats'),
     path('itemstats/chart/', views.chart, name='chart'),
+    #----
+
+    # Send mail
+    path('mail/', views.mail, name='mail'),
+    path('mail/sendmail/', views.sendmail, name='sendmail'),
+    #----
 
 ]
