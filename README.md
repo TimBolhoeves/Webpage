@@ -24,10 +24,3 @@ If you wish to be able to send email (using the button only certain admins can s
 * Select `API`, and copy the `API key` and `API base URL`
 * Go into `views.py` and find the function named `sendmail` located in the `# mail` section
 * Paste the key and base url into the relevent places
-
-<br>
-
-If you wish to not see detailed error messages when something goes wrong, do the following:
-* Go into `settings.py` located in the `project` folder, and set `DEBUG=False`
-* In the same file, add `['*']` to `ALLOWED_HOSTS`
-(note: in production you want to set ALLOWED_HOSTS to something like `['.herokuapp.com', 'localhost', '127.0.0.1']`)
