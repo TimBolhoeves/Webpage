@@ -1,7 +1,7 @@
-# Webstore django training
+# 📚 Web page django training
 A webpage application made to train some of the more complex Django stuff.
 
-# Setup
+# ⚙️ Setup
 To setup and run this application follow these steps in-order.
 * `py -m venv .venv`
 * `.\.venv\Scripts\activate` (and select the interpreter in your IDE (VScode = f1>select interpreter))
@@ -14,10 +14,10 @@ To setup and run this application follow these steps in-order.
 <br />
 ...And done!
 
-### NOTE
+### 📝 NOTE
 Its important to generate (or choose) your own `SECRET_KEY` located in `settings.py`, and not use the one already given.
 
-# Optional
+# 🤔 Optional
 If you wish to be able to send email (using the button only certain admins can see/use), do the following:
 * Create a (free, no billing) [mailgun account](https://signup.mailgun.com/new/signup)
 * Navigate to `Sending > Domains` and click your (sandbox)domain
