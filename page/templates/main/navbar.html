@@ -41,7 +41,7 @@
             <i class="fa fa-user" aria-hidden="true"></i> {{ user.username }}
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            {% if perms.user.can_delete_user %}
+            {% if perms.user.delete_user %}
               <a class="dropdown-item" href="/admin">Admin portal</a>
               <div class="dropdown-divider"></div>
             {% endif %}
