@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from datetime import timedelta
 from pathlib import Path
 import os
+from environs import Env
+
+env = Env()
+env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,6 +32,15 @@ SECRET_KEY = 'django-insecure-9+zy=qwa6jdnx=cpyw4#b$q46u-$w(t25z3#3f4d5krdu*i(3g
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+
+#  uncomment this and look at the README for using the "send email" button 
+
+# EMAIL_HOST = 'smtp.office365.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'someone@gmail.com'
+# EMAIL_HOST_PASSWORD = env.str("SMTP_WW")
+# EMAIL_USE_TLS = True
 
 
 # @login_required in views.py redirects to the url that is stated here

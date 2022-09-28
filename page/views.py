@@ -197,14 +197,7 @@ def sendmail(request):
     body = request.POST['body']
 
     try:
-        requests.post(
-            # change to your own mailgun info
-            "https://api.mailgun.net/v3/your_domain_name/messages",
-            auth=("api", "your_api_key"),
-            data={"from": "noreply@deboer-group.com",
-                "to": ["recipient@whoknows.com"], # recipient list, can be multiple people, the recipient(s) needs to verify the first time
-                "subject": subject,
-                "text": body})
+        send_mail(subject, body, 'someone@gmail.com', ['you@gmail.com'])
         messages.info(request, 'Succesfully sent mail')
 
     except:

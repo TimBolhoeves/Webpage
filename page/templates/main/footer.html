@@ -45,29 +45,15 @@
             <p>
               <a href="https://github.com/Tim-Bolhoeve" target="_blank" class="text-reset">Made by</a>
             </p>
-            <p>
-              <a href="https://github.com/TimBolhoeve-DBG/bestelapp" target="_blank" class="text-reset">Bestel app</a>
-            </p>
-            {% if user.is_authenticated %}
+
+            {% comment %} Look in the GH README and in the settings.py on how to send email  {% endcomment %}
+            {% comment %} {% if user.is_authenticated %}
               {% if perms.auth.add_user %}
                 <p>
                   <a href="{% url 'mail' %}" class="btn btn-primary"><i class="fa fa-envelope" aria-hidden="true"></i> Send mail</a>
                 </p>
-              {% endif %}
+              {% endif %} {% endcomment %}
             {% endif %}
-          </div>
-          <!-- Grid column -->
-  
-          <!-- Grid column -->
-          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-            <!-- Links -->
-            <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-            <p><i class="fa fa-map-marker" aria-hidden="true"></i> De Rijp, NH, Netherlands</p>
-            <p>
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-              tim.bolhoeve@deboer-group.com
-            </p>
-            <p><i class="fa fa-phone" aria-hidden="true"></i> +31 6 46435091</p>
           </div>
           <!-- Grid column -->
         </div>
