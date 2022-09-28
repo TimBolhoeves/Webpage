@@ -24,3 +24,4 @@ If you wish to be able to send email (using the button only certain admins can s
 * Select `API`, and copy the `API key` and `API base URL`
 * Go into `views.py` and find the function named `sendmail` located in the `# mail` section
 * Paste the key and base url into the relevent places
+* P.S Uncomment the sendmail SMTP in settings, and the button in index.html
